@@ -14,7 +14,12 @@ class HomePage extends StatelessWidget {
         drawer: Drawer(
           child: ListView(
             children: <Widget>[
-              const DrawerHeader(child: Text('Encabezado')),
+              const DrawerHeader(
+                  //enzabezado en negritas
+                  child: Text(
+                'Encabezado',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              )),
               CostomListTile()
             ],
           ),
@@ -44,6 +49,8 @@ class HomePage extends StatelessWidget {
 }
 
 class CostomListTile extends StatelessWidget {
+  const CostomListTile({super.key});
+
   /*IconData icon;
   String text;
   Function onTap;
