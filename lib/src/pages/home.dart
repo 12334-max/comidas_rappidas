@@ -15,7 +15,7 @@ class HomePage extends StatelessWidget {
           child: ListView(
             children: <Widget>[
               const DrawerHeader(
-                //enzabezado en negritas
+                  //enzabezado en negritas
                   child: Text(
                 'Encabezado',
                 style: TextStyle(fontWeight: FontWeight.bold),
