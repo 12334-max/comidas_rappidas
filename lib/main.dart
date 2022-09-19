@@ -6,8 +6,8 @@ void main() {
   runApp(MaterialApp(
     initialRoute: '/Home',
     routes: {
-      '/Home': (context) => HomePage(),
-      '/Login': (context) => Login(),
+      '/Home': (context) => const HomePage(),
+      '/Login': (context) => const Login(),
     },
   ));
 }

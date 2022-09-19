@@ -14,11 +14,9 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        /*appBar: AppBar(
-          shadowColor: const Color.fromARGB(255, 0, 0, 0),
-          backgroundColor: const Color.fromARGB(255, 255, 174, 0),
-          title: const Text('COMIDAS'),
-        ),*/
+        appBar: AppBar(
+          backgroundColor: Colors.orange,
+        ),
         body: Center(
           child: Column(children: [_formLogin()]),
         ),
@@ -28,62 +26,91 @@ class _LoginState extends State<Login> {
 
   bool _ocultarPassword = true;
   Icon _iconEye = const Icon(Icons.visibility_off);
+  final _formKey = GlobalKey<FormState>();
 
   Widget _formLogin() {
-    return StreamBuilder(
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
-      return Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Padding(padding: EdgeInsets.symmetric(vertical: 100.0)),
-          Image.asset(
-            'images/login/logo1.png',
-            height: 200,
-            width: 300,
+    return Form(
+        key: _formKey,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 50.0),
+          child: Column(
+            children: [
+              const Padding(padding: EdgeInsets.symmetric(vertical: 80.0)),
+              Image.asset(
+                'images/login/logo1.png',
+                width: 300,
+              ),
+              TextFormField(
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Campo requerido';
+                  }
+                },
+                keyboardType: TextInputType.emailAddress,
+                decoration: const InputDecoration(
+                  label: Text('Email'),
+                  icon: Icon(Icons.email),
+                  helperText: 'Ingrese su email',
+                ),
+              ),
+              TextFormField(
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Campo requerido';
+                  }
+                },
+                keyboardType: TextInputType.text,
+                decoration: InputDecoration(
+                  label: const Text('Passwrod'),
+                  icon: _icon(),
+                  helperText: 'Ingrese su contraseña',
+                ),
+                obscureText: _ocultarPassword,
+              ),
+              const SizedBox(
+                height: 30.0,
+              ),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(50.0),
+                child: Stack(
+                  children: <Widget>[
+                    Positioned.fill(
+                      child: Container(color: Colors.yellow[800]),
+                    ),
+                    TextButton(
+                      style: TextButton.styleFrom(
+                        foregroundColor: Colors.white,
+                        padding: const EdgeInsets.all(16.0),
+                        textStyle: const TextStyle(fontSize: 20),
+                      ),
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text('Processing Data')),
+                          );
+                        }
+                      },
+                      child: const Text('Iniciar'),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
-          const ListTile(
-            contentPadding: EdgeInsets.symmetric(horizontal: 50.0),
-            title: TextField(
-              keyboardType: TextInputType.emailAddress,
-              decoration: InputDecoration(
-                  label: Text(
-                    'Email',
-                    style: TextStyle(fontSize: 18.0),
-                  ),
-                  helperText: 'Ingrese su Email'),
-            ),
-            trailing: Icon(Icons.mail),
-          ),
-          ListTile(
-            contentPadding: const EdgeInsets.symmetric(horizontal: 50.0),
-            title: TextField(
-              keyboardType: TextInputType.text,
-              obscureText: _ocultarPassword,
-              decoration: const InputDecoration(
-                  label: Text(
-                    'Password',
-                    style: TextStyle(fontSize: 18.0),
-                  ),
-                  helperText: 'Ingrese su contraseña'),
-            ),
-            trailing: IconButton(
-              icon: _iconEye,
-              onPressed: () {
-                setState(() {
-                  _ocultarPassword = !_ocultarPassword;
-                  _iconEye = _ocultarPassword
-                      ? const Icon(Icons.visibility_off)
-                      : const Icon(Icons.visibility);
-                });
-              },
-            ),
-          ),
-          ElevatedButton(
-            child: const Text('Iniciar'),
-            onPressed: () {},
-          )
-        ],
-      );
-    });
+        ));
+  }
+
+  Widget _icon() {
+    return IconButton(
+      icon: _iconEye,
+      onPressed: () {
+        setState(() {
+          _ocultarPassword = !_ocultarPassword;
+          _iconEye = _ocultarPassword
+              ? const Icon(Icons.visibility_off)
+              : const Icon(Icons.visibility);
+        });
+      },
+    );
   }
 }

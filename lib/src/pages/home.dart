@@ -12,15 +12,46 @@ class HomePage extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         drawer: Drawer(
+          // Add a ListView to the drawer. This ensures the user can scroll
+          // through the options in the drawer if there isn't enough vertical
+          // space to fit everything.
           child: ListView(
-            children: <Widget>[
-              const DrawerHeader(
-                  //enzabezado en negritas
-                  child: Text(
-                'Encabezado',
-                style: TextStyle(fontWeight: FontWeight.bold),
-              )),
-              CostomListTile()
+            // Important: Remove any padding from the ListView.
+            padding: EdgeInsets.zero,
+            children: [
+              DrawerHeader(
+                decoration: const BoxDecoration(
+                  color: Colors.orange,
+                ),
+                child: IconButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/Login');
+                  },
+                  icon: const Icon(Icons.account_circle),
+                  iconSize: 100.0,
+                ),
+              ),
+              ListTile(
+                title: const Text('Home'),
+                onTap: () {
+                  Navigator.pushNamed(context, '/Home');
+                },
+                trailing: const Icon(Icons.home),
+              ),
+              ListTile(
+                title: const Text('Settings'),
+                onTap: () {
+                  Navigator.pushNamed(context, '/Home');
+                },
+                trailing: const Icon(Icons.settings),
+              ),
+              ListTile(
+                title: const Text('Iniciar Sesion'),
+                onTap: () {
+                  Navigator.pushNamed(context, '/Login');
+                },
+                trailing: const Icon(Icons.settings),
+              ),
             ],
           ),
         ),
@@ -33,7 +64,10 @@ class HomePage extends StatelessWidget {
               onPressed: () {
                 Navigator.pushNamed(context, '/Login');
               },
-              icon: const Icon(Icons.login),
+              icon: const Icon(
+                Icons.account_circle_rounded,
+                size: 40.0,
+              ),
               padding: const EdgeInsets.only(right: 30.0),
             )
           ],
@@ -48,7 +82,7 @@ class HomePage extends StatelessWidget {
   }
 }
 
-class CostomListTile extends StatelessWidget {
+/*class CostomListTile extends StatelessWidget {
   const CostomListTile({super.key});
 
   /*IconData icon;
@@ -86,3 +120,4 @@ class CostomListTile extends StatelessWidget {
     );
   }
 }
+*/
