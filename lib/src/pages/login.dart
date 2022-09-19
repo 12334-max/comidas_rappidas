@@ -45,6 +45,7 @@ class _LoginState extends State<Login> {
                   if (value!.isEmpty) {
                     return 'Campo requerido';
                   }
+                  return null;
                 },
                 keyboardType: TextInputType.emailAddress,
                 decoration: const InputDecoration(
@@ -58,6 +59,7 @@ class _LoginState extends State<Login> {
                   if (value!.isEmpty) {
                     return 'Campo requerido';
                   }
+                  return null;
                 },
                 keyboardType: TextInputType.text,
                 decoration: InputDecoration(
@@ -86,7 +88,7 @@ class _LoginState extends State<Login> {
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('Processing Data')),
+                            const SnackBar(content: Text('Procesando Datos')),
                           );
                         }
                       },
