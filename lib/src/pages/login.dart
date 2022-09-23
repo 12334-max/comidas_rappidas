@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rappi_2/models/usuario.dart';
 
 class Login extends StatefulWidget {
   static String id = 'login';
@@ -26,6 +27,8 @@ class _LoginState extends State<Login> {
 
   bool _ocultarPassword = true;
   Icon _iconEye = const Icon(Icons.visibility_off);
+  TextEditingController _txtController = TextEditingController();
+  TextEditingController _passController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   Widget _formLogin() {
@@ -85,11 +88,14 @@ class _LoginState extends State<Login> {
                         padding: const EdgeInsets.all(16.0),
                         textStyle: const TextStyle(fontSize: 20),
                       ),
-                      onPressed: () {
+                      onPressed: () async {
                         if (_formKey.currentState!.validate()) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('Procesando Datos')),
-                          );
+                          String r = await Usuario.valida(
+                              _txtController.value.text,
+                              _passController.value.text);
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(SnackBar(content: Text(r)));
+//                          Navigator.pushReplacement(context, MaterialPageRoute(builder: HomePage()));
                         }
                       },
                       child: const Text('Iniciar'),
