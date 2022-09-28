@@ -1,10 +1,13 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:rappi_2/models/usuario.dart';
+import 'package:rappi_2/models/db.dart';
 
 class Login extends StatefulWidget {
   static String id = 'login';
 
-  const Login({super.key});
+  const Login({Key? key}) : super(key: key);
 
   @override
   State<Login> createState() => _LoginState();
@@ -38,7 +41,9 @@ class _LoginState extends State<Login> {
           padding: const EdgeInsets.symmetric(horizontal: 50.0),
           child: Column(
             children: [
-              const Padding(padding: EdgeInsets.symmetric(vertical: 80.0)),
+              const SizedBox(
+                height: 50,
+              ),
               Image.asset(
                 'images/login/logo1.png',
                 width: 300,
@@ -89,13 +94,17 @@ class _LoginState extends State<Login> {
                         textStyle: const TextStyle(fontSize: 20),
                       ),
                       onPressed: () async {
-                        if (_formKey.currentState!.validate()) {
-                          String r = await Usuario.valida(
-                              _txtController.value.text,
-                              _passController.value.text);
-                          ScaffoldMessenger.of(context)
-                              .showSnackBar(SnackBar(content: Text(r)));
-//                          Navigator.pushReplacement(context, MaterialPageRoute(builder: HomePage()));
+                        String r = await Usuario.valida(
+                            _txtController.value.text,
+                            _passController.value.text);
+                        var json = jsonDecode(r);
+
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text(json['respuesta'])));
+
+                        if (json['respuesta'] == 'Bienvenido') {
+                          Datos.registraToken(json['token']);
+                          //Navigator.pushNamed(context, '/Home');
                         }
                       },
                       child: const Text('Iniciar'),

@@ -9,15 +9,14 @@ class Usuario {
 
   static Future<String> valida(String e, String c) async {
     try {
-      final respuesta = await http.Client()
-          .get(Uri.http('localhost', '/comidas/public/api/login',
-              {'email': e, 'pass': c}))
-          .timeout(const Duration(seconds: 5));
+      final respuesta = await http.Client().get(
+          Uri.http('172.25.208.:8000', '/api/login', {'email': e, 'pass': c}));
+      // .timeout(Duration(seconds: 5));
 
-      print("RESPUESTA ${respuesta.body}");
+      print("RESPUESTA " + respuesta.body);
       return respuesta.body.toString();
     } on Exception catch (e) {
-      print('ERROR: $e');
+      print('ERROR: ' + e.toString());
       return "Error de conexión";
     }
   }

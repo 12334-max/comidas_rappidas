@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  const HomePage({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       color: Colors.orange,
-      title: 'Flutter Demo',
+      title: 'Rappi',
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         drawer: Drawer(
@@ -32,32 +32,25 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               ListTile(
-                title: const Text('Home'),
+                title: const Text('Platillos'),
                 onTap: () {
                   Navigator.pushNamed(context, '/Home');
                 },
                 trailing: const Icon(Icons.home),
               ),
               ListTile(
-                title: const Text('Settings'),
+                title: const Text('Cerra Sesion'),
                 onTap: () {
-                  Navigator.pushNamed(context, '/Home');
+                  Navigator.of(context).pushNamed('/Login');
                 },
-                trailing: const Icon(Icons.settings),
-              ),
-              ListTile(
-                title: const Text('Iniciar Sesion'),
-                onTap: () {
-                  Navigator.pushNamed(context, '/Login');
-                },
-                trailing: const Icon(Icons.settings),
+                trailing: const Icon(Icons.logout),
               ),
             ],
           ),
         ),
         appBar: AppBar(
           backgroundColor: Colors.orange,
-          title: const Text('HOME'),
+          title: const Text('RAPPI 2'),
           actions: <Widget>[
             IconButton(
               splashColor: Colors.blueGrey,
@@ -72,52 +65,16 @@ class HomePage extends StatelessWidget {
             )
           ],
         ),
-        body: const Center(
-            child: Text(
-          'Este sera la pantalla de inicio',
-          style: TextStyle(fontSize: 30.0),
-        )),
-      ),
-    );
-  }
-}
-
-/*class CostomListTile extends StatelessWidget {
-  const CostomListTile({super.key});
-
-  /*IconData icon;
-  String text;
-  Function onTap;
-  CostomListTile(this.icon, this.text, this.onTap);
-*/
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(8.0, 0, 8.0, 0),
-      child: InkWell(
-        splashColor: Colors.orangeAccent,
-        onTap: () => {},
-        child: SizedBox(
-          height: 40,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Row(
-                children: const [
-                  Icon(Icons.home),
-                  Padding(padding: EdgeInsets.all(8.0)),
-                  Text(
-                    'Home',
-                    style: TextStyle(fontSize: 20),
-                  ),
-                ],
-              ),
-            ],
-          ),
+        body: const Center(),
+        bottomNavigationBar: BottomNavigationBar(
+          
+          items: const [
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.adb_sharp), label: 'Pendientes')
+          ],
         ),
       ),
     );
   }
 }
-*/
