@@ -9,10 +9,10 @@ class Usuario {
 
   static Future<String> valida(String e, String c) async {
     try {
-      final respuesta = await http.Client().get(
-          Uri.http('172.25.208.:8000', '/api/login', {'email': e, 'pass': c}));
-      // .timeout(Duration(seconds: 5));
-
+      final respuesta = await http.Client()
+          .get(Uri.http(
+              '192.168.1.72:8000', '/api/login', {'email': e, 'pass': c}))
+          .timeout(Duration(seconds: 5));
       print("RESPUESTA " + respuesta.body);
       return respuesta.body.toString();
     } on Exception catch (e) {

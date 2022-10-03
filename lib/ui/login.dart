@@ -49,6 +49,7 @@ class _LoginState extends State<Login> {
                 width: 300,
               ),
               TextFormField(
+                controller: _txtController,
                 validator: (value) {
                   if (value!.isEmpty) {
                     return 'Campo requerido';
@@ -63,6 +64,7 @@ class _LoginState extends State<Login> {
                 ),
               ),
               TextFormField(
+                controller: _passController,
                 validator: (value) {
                   if (value!.isEmpty) {
                     return 'Campo requerido';
@@ -104,7 +106,7 @@ class _LoginState extends State<Login> {
 
                         if (json['respuesta'] == 'Bienvenido') {
                           Datos.registraToken(json['token']);
-                          //Navigator.pushNamed(context, '/Home');
+                          Navigator.pushNamed(context, '/Home');
                         }
                       },
                       child: const Text('Iniciar'),
