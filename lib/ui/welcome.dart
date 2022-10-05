@@ -1,16 +1,21 @@
+import 'dart:ffi';
+
+import 'package:comidas_app/model/db.dart';
+import 'package:comidas_app/model/pedido.dart';
+import 'package:comidas_app/model/platillo.dart';
+import 'package:comidas_app/ui/menu_opciones.dart';
 import 'package:flutter/material.dart';
 
-import 'package:rappi_2/models/db.dart';
-import 'package:rappi_2/models/pedido.dart';
+class Welcome extends StatefulWidget {
+  const Welcome({Key? key, required this.title}) : super(key: key);
 
-class Contenido extends StatefulWidget {
-  const Contenido({Key? key}) : super(key: key);
+  final String title;
 
   @override
-  State<Contenido> createState() => _ContenidoState();
+  State<Welcome> createState() => _WelcomeState();
 }
 
-class _ContenidoState extends State<Contenido> {
+class _WelcomeState extends State<Welcome> {
   String? _token = "";
   List<Pedido> _pedidos = [];
   String _filtroSeleccionado = "PEDIDO";
@@ -58,61 +63,11 @@ class _ContenidoState extends State<Contenido> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(
-        //Creamos el Drawer en forma de lista
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            //encabezado del Drawer
-            DrawerHeader(
-              decoration: const BoxDecoration(
-                color: Colors.orange,
-              ),
-              child: IconButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/Home');
-                },
-                icon: const Icon(Icons.account_circle),
-                iconSize: 100.0,
-              ),
-            ),
-            //Opciones dentro del Drawer
-            ListTile(
-              title: const Text('Platillos'),
-              onTap: () {
-                Navigator.pushNamed(context, '/Home');
-              },
-              trailing: const Icon(Icons.home),
-            ),
-            ListTile(
-              title: const Text('Cerra Sesion'),
-              onTap: () {
-                Navigator.pushNamedAndRemoveUntil(
-                    context, '/Login', (route) => route == false);
-              },
-              trailing: const Icon(Icons.logout),
-            ),
-          ],
-        ),
-      ),
       appBar: AppBar(
-        backgroundColor: Colors.orange,
-        title: const Text('RAPPI 2'),
-        actions: <Widget>[
-          IconButton(
-            splashColor: Colors.blueGrey,
-            onPressed: () {
-              Navigator.pushNamed(context, '/Home');
-            },
-            icon: const Icon(
-              Icons.account_circle_rounded,
-              size: 40.0,
-            ),
-            padding: const EdgeInsets.only(right: 30.0),
-          )
-        ],
+        title: Text(widget.title),
       ),
       body: _columnaCentral(),
+      drawer: menuOpciones(context),
     );
   }
 
