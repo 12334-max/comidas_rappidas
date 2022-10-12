@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-
 import 'package:rappi_2/models/db.dart';
 import 'package:rappi_2/models/pedido.dart';
+import '../ui/menu_opciones.dart';
 
 class Contenido extends StatefulWidget {
   const Contenido({Key? key}) : super(key: key);
@@ -58,43 +58,7 @@ class _ContenidoState extends State<Contenido> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(
-        //Creamos el Drawer en forma de lista
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            //encabezado del Drawer
-            DrawerHeader(
-              decoration: const BoxDecoration(
-                color: Colors.orange,
-              ),
-              child: IconButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/Home');
-                },
-                icon: const Icon(Icons.account_circle),
-                iconSize: 100.0,
-              ),
-            ),
-            //Opciones dentro del Drawer
-            ListTile(
-              title: const Text('Platillos'),
-              onTap: () {
-                Navigator.pushNamed(context, '/Home');
-              },
-              trailing: const Icon(Icons.home),
-            ),
-            ListTile(
-              title: const Text('Cerra Sesion'),
-              onTap: () {
-                Navigator.pushNamedAndRemoveUntil(
-                    context, '/Login', (route) => route == false);
-              },
-              trailing: const Icon(Icons.logout),
-            ),
-          ],
-        ),
-      ),
+      drawer: drawer(context),
       appBar: AppBar(
         backgroundColor: Colors.orange,
         title: const Text('RAPPI 2'),
@@ -133,7 +97,7 @@ class _ContenidoState extends State<Contenido> {
               _filtroSeleccionado = "PEDIDO";
             });
           }),
-      Text("Pedidos"),
+      const Text("Pedidos"),
       Radio(
           value: "PROCESO",
           groupValue: _filtroSeleccionado,
@@ -142,7 +106,7 @@ class _ContenidoState extends State<Contenido> {
               _filtroSeleccionado = "PROCESO";
             });
           }),
-      Text("En Proceso"),
+      const Text("En Proceso"),
     ]);
   }
 
