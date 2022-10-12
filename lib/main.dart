@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rappi_2/ui/login.dart';
+import 'package:rappi_2/ui/platillos.dart';
 import 'package:rappi_2/ui/welcome.dart';
 
 void main() {
@@ -8,6 +9,9 @@ void main() {
     routes: {
       '/Home': (context) => const Contenido(),
       '/Login': (context) => const Login(),
+      '/Platillos': (context) => VistaPlatillos(
+            title: '',
+          )
     },
   ));
 }
