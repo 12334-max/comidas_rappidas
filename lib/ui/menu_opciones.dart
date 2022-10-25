@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rappi_2/api/maps.dart';
 
 Drawer drawer(BuildContext context) {
   return Drawer(
@@ -26,6 +27,14 @@ Drawer drawer(BuildContext context) {
             Navigator.pushNamed(context, '/Platillos');
           },
           trailing: const Icon(Icons.home),
+        ),
+        ListTile(
+          title: const Text("Ubicación"),
+          onTap: (() {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const MapsService()));
+          }),
+          trailing: const Icon(Icons.location_on_rounded),
         ),
         ListTile(
           title: const Text('Cerra Sesion'),

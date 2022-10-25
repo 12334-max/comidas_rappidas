@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rappi_2/models/db.dart';
 import 'package:rappi_2/models/pedido.dart';
+import 'package:rappi_2/ui/platillos_add.dart';
 import '../ui/menu_opciones.dart';
 
 class Contenido extends StatefulWidget {
@@ -26,6 +27,12 @@ class _ContenidoState extends State<Contenido> {
   void recuperaToken() async {
     _token = await Datos.leeToken();
     setState(() {});
+  }
+
+  Function refresca() {
+    return () {
+      setState(() {});
+    };
   }
 
   void leePedidos() {
@@ -77,6 +84,18 @@ class _ContenidoState extends State<Contenido> {
         ],
       ),
       body: _columnaCentral(),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.add),
+        backgroundColor: Colors.orange,
+        onPressed: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => AgregaPlatillo(
+                    title: "Agregar Platillo", refrescaVentana: refresca()),
+              ));
+        },
+      ),
     );
   }
 

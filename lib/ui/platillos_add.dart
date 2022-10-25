@@ -37,11 +37,12 @@ class _AgregaPlatilloState extends State<AgregaPlatillo> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.orange,
         title: Text(widget.title),
       ),
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 50),
+          padding: const EdgeInsets.symmetric(horizontal: 50),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -76,9 +77,9 @@ class _AgregaPlatilloState extends State<AgregaPlatillo> {
                 height: 30,
               ),
               Align(
-                alignment: Alignment.centerRight,
+                alignment: Alignment.center,
                 child: TextButton(
-                    style: TextButton.styleFrom(backgroundColor: Colors.blue),
+                    style: TextButton.styleFrom(backgroundColor: Colors.orange),
                     onPressed: () async {
                       Platillo platillo = Platillo(
                           id: 0,

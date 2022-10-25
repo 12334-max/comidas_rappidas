@@ -31,7 +31,7 @@ class Platillo {
   static Future<List<Platillo>> leeTodos(String token, String txt) async {
     try {
       final respuesta = await http.Client()
-          .get(Uri.http('localhost', '/comidas/public/api/platillos',
+          .get(Uri.http('192.168.1.70:8000', '/api/platillos',
               {'api_token': token, 'txt': txt}))
           .timeout(Duration(seconds: 5));
 
@@ -54,7 +54,7 @@ class Platillo {
   Future<bool> registra(String token) async {
     try {
       final respuesta = await http.Client()
-          .post(Uri.http('localhost', '/comidas/public/api/platillos', {
+          .post(Uri.http('192.168.1.70:8000', '/api/platillos', {
             'api_token': token,
             'nombre': this.nombre,
             'descr': this.descripcion,

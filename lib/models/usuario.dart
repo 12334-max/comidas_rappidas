@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:http/http.dart' as http;
 
 class Usuario {
@@ -12,8 +10,8 @@ class Usuario {
   static Future<String> valida(String e, String c) async {
     try {
       final respuesta = await http.Client()
-          .get(Uri.http('localhost', '/comidas/public/api/login',
-              {'email': e, 'pass': c}))
+          .get(Uri.http(
+              '192.168.1.70:8000', '/api/login', {'email': e, 'pass': c}))
           .timeout(Duration(seconds: 5));
 
       print("RESPUESTA " + respuesta.body);

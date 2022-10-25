@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rappi_2/ui/platillos_add.dart';
 import '../models/db.dart';
 import '../models/platillo.dart';
 
@@ -29,6 +30,12 @@ class _VistaPlatillosState extends State<VistaPlatillos> {
     setState(() {});
   }
 
+  Function refresca() {
+    return () {
+      setState(() {});
+    };
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,6 +59,17 @@ class _VistaPlatillosState extends State<VistaPlatillos> {
               },
             ),
       //drawer: menuOpciones(context),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.add),
+        backgroundColor: Colors.orange,
+        onPressed: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => AgregaPlatillo(
+                      title: "Agregar platillo", refrescaVentana: refresca())));
+        },
+      ),
     );
   }
 
@@ -61,11 +79,11 @@ class _VistaPlatillosState extends State<VistaPlatillos> {
       title: TextField(
         controller: _txtController,
         keyboardType: TextInputType.text,
-        decoration: InputDecoration(
+        decoration: const InputDecoration(
             label: Text('Buscar:'), helperText: 'Busca platillos'),
       ),
       trailing: IconButton(
-        icon: Icon(Icons.search),
+        icon: const Icon(Icons.search),
         onPressed: () {
           print("Buscando " + _txtController.text);
           setState(() {});
