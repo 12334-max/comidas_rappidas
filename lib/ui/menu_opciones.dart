@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'platillos.dart';
 
 Drawer drawer(BuildContext context) {
   return Drawer(
