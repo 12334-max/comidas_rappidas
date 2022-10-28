@@ -11,7 +11,7 @@ class Usuario {
     try {
       final respuesta = await http.Client()
           .get(Uri.http(
-              '192.168.1.70:8000', '/api/login', {'email': e, 'pass': c}))
+              '192.168.1.73:8000', '/api/login', {'email': e, 'pass': c}))
           .timeout(Duration(seconds: 5));
 
       print("RESPUESTA " + respuesta.body);
@@ -25,8 +25,8 @@ class Usuario {
   static Future<bool> validaToken(String token) async {
     try {
       final respuesta = await http.Client()
-          .get(Uri.http('localhost', '/comidas/public/api/validatoken',
-              {'api_token': token}))
+          .get(Uri.http(
+              '192.168.1.73:8000', '/api/validatoken', {'api_token': token}))
           .timeout(Duration(seconds: 5));
 
       print("RESPUESTA " + respuesta.body);
