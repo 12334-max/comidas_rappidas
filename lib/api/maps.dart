@@ -19,7 +19,7 @@ class _MapsServiceState extends State<MapsService> {
       const CameraPosition(target: LatLng(16.9147152, -92.094464), zoom: 15);
 
   //Controlador del maps
-  Completer<GoogleMapController> _controller = Completer();
+  final Completer<GoogleMapController> _controller = Completer();
 
   //Lista de Puntos del constructor
   static final List<Lugar> puntos = [
