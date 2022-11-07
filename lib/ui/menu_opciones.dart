@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rappi_2/api/cocktail.dart';
 import 'package:rappi_2/api/maps.dart';
 
 Drawer drawer(BuildContext context) {
@@ -35,6 +36,14 @@ Drawer drawer(BuildContext context) {
                 MaterialPageRoute(builder: (context) => const MapsService()));
           }),
           trailing: const Icon(Icons.location_on_rounded),
+        ),
+        ListTile(
+          title: const Text("Nuestros Cocteles"),
+          onTap: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => Body()));
+          },
+          trailing: const Icon(Icons.local_drink_sharp),
         ),
         ListTile(
           title: const Text('Cerra Sesion'),

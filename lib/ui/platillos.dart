@@ -106,7 +106,7 @@ class _VistaPlatillosState extends State<VistaPlatillos> {
       itemBuilder: (context, i) {
         Platillo p = _platillos[i];
         return ListTile(
-          title: Text(p.nombre),
+          title: Text(p.nombre + '  ' + p.estrellas.toString()),
           subtitle: Text(p.descripcion),
           trailing: Text("\$" + p.precio.toString()),
         );

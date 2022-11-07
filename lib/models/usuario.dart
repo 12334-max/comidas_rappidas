@@ -9,10 +9,9 @@ class Usuario {
 
   static Future<String> valida(String e, String c) async {
     try {
-      final respuesta = await http.Client()
-          .get(Uri.http(
-              '192.168.1.73:8000', '/api/login', {'email': e, 'pass': c}))
-          .timeout(Duration(seconds: 5));
+      final respuesta = await http.Client().get(
+          Uri.http('192.168.1.70:8000', '/api/login', {'email': e, 'pass': c}));
+      //.timeout(Duration(seconds: 5));
 
       print("RESPUESTA " + respuesta.body);
       return respuesta.body.toString();
@@ -26,7 +25,7 @@ class Usuario {
     try {
       final respuesta = await http.Client()
           .get(Uri.http(
-              '192.168.1.73:8000', '/api/validatoken', {'api_token': token}))
+              '192.168.1.70:8000', '/api/validatoken', {'api_token': token}))
           .timeout(Duration(seconds: 5));
 
       print("RESPUESTA " + respuesta.body);

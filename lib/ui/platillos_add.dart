@@ -82,12 +82,14 @@ class _AgregaPlatilloState extends State<AgregaPlatillo> {
                     style: TextButton.styleFrom(backgroundColor: Colors.orange),
                     onPressed: () async {
                       Platillo platillo = Platillo(
-                          id: 0,
-                          nombre: _nombreController.text,
-                          descripcion: _descripcionController.text,
-                          precio: double.parse(_precioController.text),
-                          categoria: _categoriaController.text,
-                          status: '');
+                        id: 0,
+                        nombre: _nombreController.text,
+                        descripcion: _descripcionController.text,
+                        precio: double.parse(_precioController.text),
+                        categoria: _categoriaController.text,
+                        status: '',
+                        estrellas: 0,
+                      );
 
                       bool respuesta = await platillo.registra(_token!);
 
